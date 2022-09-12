@@ -4,8 +4,6 @@ import {
   MagnifyingGlassIcon,
   AdjustmentsVerticalIcon,
 } from "react-native-heroicons/outline";
-import MainLogo from "./IconsComponents/MainLogo";
-import UserIcon from "./IconsComponents/UserIcon";
 import {
   useFonts,
   Poppins_600SemiBold,
@@ -24,7 +22,8 @@ const Header = () => {
 
   return (
     <View className="flex-row items-center pb-3 mx-[30px] justify-between">
-      <MainLogo w={30} h={30} imageColor="#232323" />
+      <Image source={require("../assets/main_logo/main_logo.png")} />
+      {/* <MainLogo w={30} h={30} imageColor="#232323" /> */}
       <View className="">
         <Text className="font-bold tracking-[2px] text-white text-[15px]">
           Borrow
@@ -32,7 +31,8 @@ const Header = () => {
       </View>
 
       {/* <ProfileIcon width={30} height={30} /> */}
-      <UserIcon w={34} h={34} />
+      {/* <UserIcon w={34} h={34} /> */}
+      <Image source={require("../assets/user_img/user_img.png")} />
     </View>
   );
 };

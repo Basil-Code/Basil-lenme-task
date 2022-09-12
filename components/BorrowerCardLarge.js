@@ -1,17 +1,16 @@
 import { useEffect, useState } from "react";
-import { View, Text, Switch, TouchableOpacity } from "react-native";
+import { View, Text, Switch, TouchableOpacity, Image } from "react-native";
 // import CircleSlider from "react-native-circle-slider";
-import BitcoinDarkIcon from "./IconsComponents/BitcoinDarkIcon";
-import BitcoinOrangeIcon from "./IconsComponents/BitcoinOrangeIcon";
 import ChevronDownIcon from "./IconsComponents/ChevronDownIcon";
 import ArrowCircleIcon from "./IconsComponents/ArrowCircleIcon";
 import { useNavigation } from "@react-navigation/native";
-import LiteIcon from "./IconsComponents/LiteIcon";
 import CircularSlider from "./CircularSlider";
+import ArcSlider from "./ArcSlider";
 
 const BorrowerCardLarge = ({ selectedCrypto, handleScrolling }) => {
-  const [isEnabled, setIsEnabled] = useState(false);
-  const toggleSwitch = () => setIsEnabled((previousState) => !previousState);
+  const [isSwitchEnabled, setIsSwitchEnabled] = useState(false);
+  const toggleSwitch = () =>
+    setIsSwitchEnabled((previousState) => !previousState);
 
   const [sliderValue, setSliderValue] = useState(50);
 
@@ -26,7 +25,10 @@ const BorrowerCardLarge = ({ selectedCrypto, handleScrolling }) => {
       <View className="flex-row bg-[#F5F4F8] mt-3 items-center px-2 space-x-2 py-2 rounded-lg">
         <View>
           <View className="flex-row space-x-1">
-            <BitcoinDarkIcon />
+            {/* <BitcoinDarkIcon /> */}
+            <Image
+              source={require("../assets/bitcoin_dark/bitcoin_dark.png")}
+            />
             <Text className="text-xs" c>
               Do you own crypto?
             </Text>
@@ -39,7 +41,7 @@ const BorrowerCardLarge = ({ selectedCrypto, handleScrolling }) => {
           thumbColor="#FFFFFF"
           ios_backgroundColor="#C2C2C2"
           onValueChange={toggleSwitch}
-          value={isEnabled}
+          value={isSwitchEnabled}
           style={{ transform: [{ scaleX: 0.8 }, { scaleY: 0.8 }] }}
         />
       </View>
@@ -54,12 +56,19 @@ const BorrowerCardLarge = ({ selectedCrypto, handleScrolling }) => {
       >
         {selectedCrypto.name ? (
           selectedCrypto.name === "Bitcoin" ? (
-            <BitcoinOrangeIcon />
+            // <BitcoinOrangeIcon />
+            <Image
+              source={require("../assets/bitcoin_orange/bitcoin_orange.png")}
+            />
           ) : (
-            <LiteIcon />
+            // <LiteIcon />
+            <Image source={require("../assets/litecoin_/litecoin_.png")} />
           )
         ) : (
-          <BitcoinOrangeIcon />
+          // <BitcoinOrangeIcon />
+          <Image
+            source={require("../assets/bitcoin_orange/bitcoin_orange.png")}
+          />
         )}
         {/* <BitcoinOrangeIcon /> */}
         <Text className="">
@@ -84,6 +93,15 @@ const BorrowerCardLarge = ({ selectedCrypto, handleScrolling }) => {
             onValueChange={(value) => setSliderValue(value)}
             handleScrolling={handleScrolling}
           />
+          {/* <ArcSlider
+            width={200}
+            height={200}
+            meterColor="#232323"
+            // textColor="#fff"
+            value={sliderValue}
+            onValueChange={(value) => setSliderValue(value)}
+            handleScrolling={handleScrolling}
+          /> */}
         </View>
         {/* </View> */}
 
@@ -99,16 +117,23 @@ const BorrowerCardLarge = ({ selectedCrypto, handleScrolling }) => {
 
         <View className="absolute flex-row items-center justify-center space-x-20 -z-20 mt-52 ">
           <Text className="text-[#585858]">$50</Text>
-          <Text className="text-[#585858]">$2,700</Text>
+          {isSwitchEnabled ? (
+            <Text className="text-[#585858]">$9.7k</Text>
+          ) : (
+            <Text className="text-[#585858]">$2.7k</Text>
+          )}
         </View>
 
         <Text className="flex-row text-[#585858] mt-12 px-1">
           Total amount with applicable
           <Text className=""> fees:</Text> {/* 50 * 0.2 = 10 */}
-          {Math.trunc(sliderValue * 10 + sliderValue)}
+          {/* {Math.trunc(sliderValue * 10 + sliderValue)} */}
+          {Math.trunc(sliderValue * 50 * 0.2)}
         </Text>
 
-        <ArrowCircleIcon className="mt-6 ml-44" />
+        <TouchableOpacity className="mt-6 ml-44">
+          <ArrowCircleIcon />
+        </TouchableOpacity>
       </View>
     </View>
   );

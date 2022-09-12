@@ -1,9 +1,12 @@
-import { useNavigation, useRoute } from "@react-navigation/native";
 import { useLayoutEffect } from "react";
-import { View, Text, SafeAreaView, TouchableOpacity } from "react-native";
+import {
+  View,
+  Text,
+  SafeAreaView,
+  TouchableOpacity,
+  Image,
+} from "react-native";
 import ArrowBackIcon from "../components/IconsComponents/ArrowBackIcon";
-import BitcoinOrangeIcon from "../components/IconsComponents/BitcoinOrangeIcon";
-import LiteIcon from "../components/IconsComponents/LiteIcon";
 import RadioForm, {
   RadioButton,
   RadioButtonInput,
@@ -76,12 +79,18 @@ const SelectCryptoScreen = ({ navigation, route }) => {
             >
               {/* Header Of Card */}
               <View className="flex-row items-center justify-between">
-                <View className="flex-row items-center ">
+                <View className="flex-row items-center space-x-[6px]">
                   {/* Logo */}
                   {obj.name === "Bitcoin" ? (
-                    <BitcoinOrangeIcon />
+                    // <BitcoinOrangeIcon />
+                    <Image
+                      source={require("../assets/bitcoin_orange/bitcoin_orange.png")}
+                    />
                   ) : (
-                    <LiteIcon />
+                    // <LiteIcon />
+                    <Image
+                      source={require("../assets/litecoin_/litecoin_.png")}
+                    />
                   )}
 
                   {/* Name */}
